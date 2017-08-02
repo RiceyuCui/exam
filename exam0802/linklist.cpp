@@ -20,17 +20,26 @@ struct node * creat_node(int data)
 	p->data = data;
 	p->pNext = NULL;
 	return p;
+}
+
+//尾部插入节点（无空节点）
+void insert_tail(struct node *ph, struct node *neww)
+{
+	struct node *p = ph;
+
+	while (NULL != p->pNext)
+	{
+		p = p->pNext;
+	}
+	p->pNext = neww;
 
 }
 
 int main(void)
 {
-	struct node *pHeader = NULL;
-	
-	pHeader = creat_node(1);
-	pHeader->pNext = creat_node(255);
-	pHeader->pNext->pNext = creat_node(911);
-	
+	struct node *pHeader = creat_node(1);
+	insert_tail(pHeader, creat_node(22));
+	insert_tail(pHeader, creat_node(32));
 
 	printf("node1 data: %d.\n", pHeader->data);
 	printf("node2 data: %d.\n", pHeader->pNext->data);
