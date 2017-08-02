@@ -39,12 +39,21 @@ void insert_tail(struct node *ph, struct node *neww)
 
 }
 
+//头部插入节点
+void insert_head(struct node *ph, struct node *neww)
+{	
+	neww->pNext = ph->pNext;
+	ph->pNext = neww;
+	ph->data ++;
+	
+}
+
 int main(void)
 {
 	struct node *pHeader = creat_node(0);
-	insert_tail(pHeader, creat_node(22));
-	insert_tail(pHeader, creat_node(32));
-	insert_tail(pHeader, creat_node(20));
+	insert_head(pHeader, creat_node(3));
+	insert_head(pHeader, creat_node(2));
+	insert_head(pHeader, creat_node(1));
 
 	printf("Header node data: %d.\n", pHeader->data);
 	printf("node1 data: %d.\n", pHeader->pNext->data);
