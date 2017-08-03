@@ -51,14 +51,14 @@ void insert_head(struct node *ph, struct node *neww)
 //遍历单链表
 void traverse(struct node *ph)
 {
-	struct node *p = ph->pNext;
+	struct node *p = ph;
 	printf("开始遍历\n");
 	while (NULL != p->pNext)
 	{
-		printf("node data: %d.\n", p->data);
 		p = p->pNext;
+		printf("node data: %d.\n", p->data);
+		
 	}
-	printf("node data: %d.\n", p->data);
 	printf("完了\n");
 }
 
