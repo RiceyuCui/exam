@@ -93,18 +93,47 @@ int delete_node(struct node *ph, int data)
 	return -1;
 }
 
+//将ph指向的链表逆序
+void reverse_linkedlist(struct node *ph)
+{
+	struct node *p = ph->pNext;
+	struct node *pBack = NULL;
+	//当链表没有有效节点或者有效节点只有一个，逆序没有操作
+	if ((ph->pNext == NULL)||(p->pNext == NULL))
+		return;
+	while (p->pNext != NULL)
+	{
+		pBack = p->pNext;
+		if (p == ph->pNext)
+		{
+			p->pNext = NULL;
+		}
+		else
+		{
+			p->pNext = ph->pNext;
+		}
+		ph->pNext = p;
+		p = pBack;
+	}
+	insert_head(ph, p);
+
+}
+
 int main(void)
 {
 	struct node *pHeader = creat_node(0);
-	insert_head(pHeader, creat_node(13));
-	insert_head(pHeader, creat_node(12));
-	insert_head(pHeader, creat_node(11));	
+	insert_tail(pHeader, creat_node(11));
+	insert_tail(pHeader, creat_node(12));
+	insert_tail(pHeader, creat_node(13));	
 
 
 	printf("Header node data: %d.\n", pHeader->data);
 
 	traverse(pHeader);
-	delete_node(pHeader, 11);
+	//delete_node(pHeader, 11);
+
+	reverse_linkedlist(pHeader);
+
 	printf("----------删除后--------\n");
 	traverse(pHeader);
 
