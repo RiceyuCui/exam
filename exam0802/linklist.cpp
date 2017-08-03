@@ -51,15 +51,46 @@ void insert_head(struct node *ph, struct node *neww)
 //遍历单链表
 void traverse(struct node *ph)
 {
-	struct node *p = ph;
+	struct node *p = ph;	
 	printf("开始遍历\n");
 	while (NULL != p->pNext)
-	{
-		p = p->pNext;
+	{	
+		p = p->pNext;  
 		printf("node data: %d.\n", p->data);
 		
 	}
 	printf("完了\n");
+}
+
+//从链表ph删除节点 待删除节点特征为数据区等于data
+//返回值：当找到并且成功删除节点返回0 否则返回-1
+int delete_node(struct node *ph, int data)
+{
+	struct node *p = ph;
+	struct node *pPrev = NULL;
+	while (NULL != p->pNext)
+	{
+		pPrev = p;
+		p = p->pNext;
+		if (p->data == data)
+		{
+			if (p->pNext == NULL)
+			{
+				pPrev->pNext = NULL;
+				free(p);
+			}
+			else
+			{
+				pPrev->pNext = p->pNext;
+				free(p);
+			}
+
+			return 0;
+		}
+
+	}
+	printf("没找到这个节点.\n");
+	return -1;
 }
 
 int main(void)
@@ -73,6 +104,10 @@ int main(void)
 	printf("Header node data: %d.\n", pHeader->data);
 
 	traverse(pHeader);
+	delete_node(pHeader, 11);
+	printf("----------删除后--------\n");
+	traverse(pHeader);
+
 
 	/**************************************
 	printf("node1 data: %d.\n", pHeader->pNext->data);
@@ -80,6 +115,6 @@ int main(void)
 	printf("node3 data: %d.\n", pHeader->pNext->pNext->pNext->data);
 	****************************/
 
-
+	return 0;
 
 }
