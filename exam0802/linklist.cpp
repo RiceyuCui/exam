@@ -48,17 +48,37 @@ void insert_head(struct node *ph, struct node *neww)
 	
 }
 
+//遍历单链表
+void traverse(struct node *ph)
+{
+	struct node *p = ph->pNext;
+	printf("开始遍历\n");
+	while (NULL != p->pNext)
+	{
+		printf("node data: %d.\n", p->data);
+		p = p->pNext;
+	}
+	printf("node data: %d.\n", p->data);
+	printf("完了\n");
+}
+
 int main(void)
 {
 	struct node *pHeader = creat_node(0);
-	insert_head(pHeader, creat_node(3));
-	insert_head(pHeader, creat_node(2));
-	insert_head(pHeader, creat_node(1));
+	insert_head(pHeader, creat_node(13));
+	insert_head(pHeader, creat_node(12));
+	insert_head(pHeader, creat_node(11));	
+
 
 	printf("Header node data: %d.\n", pHeader->data);
+
+	traverse(pHeader);
+
+	/**************************************
 	printf("node1 data: %d.\n", pHeader->pNext->data);
 	printf("node2 data: %d.\n", pHeader->pNext->pNext->data);
 	printf("node3 data: %d.\n", pHeader->pNext->pNext->pNext->data);
+	****************************/
 
 
 
