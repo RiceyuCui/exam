@@ -84,6 +84,36 @@ void forward_ergodic_linkedlist(struct node *pTail)
 	printf("————————遍历结束————————\n");
 }
 
+//从链表ph中删除节点，节点中数据是data
+int delete_node(struct node *ph, int data)
+{
+	struct node *p = ph;
+	while (NULL != p->pNext)
+	{
+		p = p->pNext;
+
+		//判断当前节点是不是要删除的那个
+		if (p->data == data)
+		{
+			//尾节点
+			if (NULL == p->pNext)
+				p->pPrev->pNext = NULL;
+			//普通节点
+			else
+			{
+				p->pPrev->pNext = p->pNext;
+				p->pNext->pPrev = p->pPrev;
+			}
+
+			free(p);
+			return 0;
+		}
+	}
+	printf("未找到\n");
+
+	return -1;
+}
+
 
 
 int main(void)
@@ -109,10 +139,12 @@ int main(void)
 
 	ergodic_linkedlist(pHeader);
 
-	struct node *p = pHeader->pNext->pNext->pNext;
-	forward_ergodic_linkedlist(p);
+	//struct node *p = pHeader->pNext->pNext->pNext;
+	//forward_ergodic_linkedlist(p);
 
+	delete_node(pHeader, 12);
 
+	ergodic_linkedlist(pHeader);
 
 	return 0;
 
