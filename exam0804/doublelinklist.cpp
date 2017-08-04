@@ -56,9 +56,40 @@ void insert_head(struct node *ph, struct node *neww)
 
 	
 }
+
+//后向遍历一个双链表
+void ergodic_linkedlist(struct node *ph)
+{
+	struct node *p = ph;
+	printf("————————开始遍历————————\n");
+	while (NULL != p->pNext)
+	{
+		p = p->pNext;
+		printf("data = %d.\n", p->data);
+	}
+	printf("————————遍历结束————————\n");	
+
+}
+
+//前向遍历一个链表，参数pTail指向末尾
+void forward_ergodic_linkedlist(struct node *pTail)
+{
+	struct node *p = pTail;
+	printf("————————开始遍历————————\n");
+	while (NULL != p->pPrev)
+	{
+		printf("data = %d.\n", p->data);
+		p = p->pPrev;
+	}
+	printf("————————遍历结束————————\n");
+}
+
+
+
 int main(void)
 {
 	struct node *pHeader = create_node(0);       //头指针
+	
 
 	//insert_tail(pHeader, create_node(11));
 	//insert_tail(pHeader, create_node(12));
@@ -70,8 +101,19 @@ int main(void)
 
 
 	//遍历
-	printf("node 1 data: %d.\n", pHeader->pNext->data);
-	printf("node 1 data: %d.\n", pHeader->pNext->pNext->data);
-	printf("node 1 data: %d.\n", pHeader->pNext->pNext->pNext->data);
+	//printf("node 1 data: %d.\n", pHeader->pNext->data);
+	//printf("node 1 data: %d.\n", pHeader->pNext->pNext->data);
+	//printf("node 1 data: %d.\n", pHeader->pNext->pNext->pNext->data);
+
+
+
+	ergodic_linkedlist(pHeader);
+
+	struct node *p = pHeader->pNext->pNext->pNext;
+	forward_ergodic_linkedlist(p);
+
+
+
+	return 0;
 
 }
