@@ -1,25 +1,54 @@
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
-int getVolume(int length, int width = 2, int height = 3);
+int max(int x, int y)
+{
+	int a = 0;
+	a = x > y ? x : y;
+	return a;
+}
+
+int max(int x, int y, int z)
+{
+	return max(max(x, y), z);
+}
+
+double max(double x, double y)
+{
+	double a = 0;
+	a = x > y ? x : y;
+	return a;
+}
+
+double max(double x, double y, double z)
+{
+	return max(max(x, y), z);
+}
 
 int main()
 {
-	const X = 10, Y = 12, Z = 15;
-	cout << "Some box data is ";
-	cout << getVolume(X, Y, Z) << endl;
-	cout << "Some box data is ";
-	cout << getVolume(X, Y) << endl;
-	cout << "Some box data is ";
-	cout << getVolume(X) << endl;
+	int i = 0;
+	double j = 0;
+	int x, y, z;
+	double m, l, n;
+
+	cout <<"input x, y, z: "<<endl;
+	cin >> x >> y >> z;
 	
+	i = max(x, y);
+	cout << i << " is bigger." << endl;
+	i = max(x, y, z);
+	cout << i << " is biggest." << endl;
+
+	cout <<"input m, l, n: " <<endl;
+	cin >> m >> l >> n;
+
+	j = max(m, l);
+	cout << j << " is bigger." << endl;
+	j = max(m, l, n);
+	cout << j << " is biggest." << endl;
+
 	return 0;
-}
 
-int getVolume(int length, int width, int height)
-{
-	cout << setw(5) << length << setw(5) << width << setw(5) << height << '\t';
 
-	return length * width * height;
 }
